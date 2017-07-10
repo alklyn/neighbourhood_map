@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Neighbourhood Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+        <script src="js/lib/knockout-3.4.2/knockout.js"></script>
+        <script src="js/lib/juery-3.2.1/jquery.min.js"></script>
+        <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="30" viewBox="0 0 9 6">
+            <clipPath id="Z">
+            <path d="M0,0 4.5,3 0,6" id="X"/>
+            </clipPath>
+            <clipPath id="A">
+            <path d="M0,0H9V6H0z"/>
+            </clipPath>
+            <g clip-path="url(#A)">
+            <path d="M0,0V6H9V0z" fill="#002395"/>
+            <path d="M0,0V3H9V0z" fill="#de3831"/>
+            <g stroke-width="2" stroke="#fff">
+            <path d="M0,0 4.5,3 0,6M4.5,3H9" id="W"/>
+            <use xlink:href="#X" stroke="#ffb612" clip-path="url(#Z)"/>
+            </g>
+            <use xlink:href="#W" fill="none" stroke="#007a4d" stroke-width="1.2"/>
+            </g>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <div id="map">
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    var map;
+
+    // This global polygon variable is to ensure only ONE polygon is rendered.
+    var polygon = null;
+
+    // Create a new blank array for all the listing markers.
+    var markers = [];
+
+    // Create placemarkers array to use in multiple functions to have control
+    // over the number of places that show.
+    var placeMarkers = [];
+
+    function initMap = function () {
+      // Constructor creates a new map - only center and zoom are required.
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -33.916264, lng: 18.413316},
+        zoom: 17,
+        mapTypeControl: false
+      });
+    }
+
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyBM2hnvcHTnk-uMBdS8L0fVzP67gJXHwLY&v=3&callback=initMap">
+    </script>
+  </body>
+</html>
