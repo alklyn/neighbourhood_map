@@ -6,9 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
-        <script src="js/lib/knockout-3.4.2/knockout.js"></script>
-        <script src="js/lib/juery-3.2.1/jquery.min.js"></script>
-        <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+      .map-container {
+        max-width: 1200px;
+        max-height: 700px;
+        overflow: hidden;
+      }
+
+      #map {
+        width: 100vw;
+        height: 100vh;
+        background-color: grey;
+      }
+    </style>
+
+    <script src="js/lib/knockout-3.4.2/knockout.js"></script>
+    <script src="js/lib/juery-3.2.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -84,9 +99,9 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid map-container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-md-12">
               <div id="map">
               </div>
             </div>
@@ -106,14 +121,14 @@
     // over the number of places that show.
     var placeMarkers = [];
 
-    function initMap = function () {
+    var initMap = function () {
       // Constructor creates a new map - only center and zoom are required.
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.916264, lng: 18.413316},
         zoom: 17,
         mapTypeControl: false
       });
-    }
+    };
 
     </script>
 
