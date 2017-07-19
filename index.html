@@ -167,6 +167,7 @@
         });
       });
 
+      showMarkers();
       document.getElementById('show-hotel-markers').addEventListener('click', showMarkers);
     };
 
@@ -216,12 +217,14 @@
       }
     }
 
+
     // This function will loop through the markers array and display them all.
     var showMarkers = function () {
       var tick = ' <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
       var normalText = 'Show hotel markers';
+      var elem = document.getElementById('show-hotel-markers');
 
-      if(this.innerHTML.indexOf('glyphicon-ok') < 0){
+      if(elem.innerHTML.indexOf('glyphicon-ok') < 0){
         var bounds = new google.maps.LatLngBounds();
         // Extend the boundaries of the map for each marker and display the marker
         markers.forEach (function (marker) {
@@ -231,7 +234,7 @@
         map.fitBounds(bounds);
 
         // Append tick to set menu item
-        this.innerHTML += tick;
+        elem.innerHTML += tick;
       }
       else{
         hideMarkers(markers);
