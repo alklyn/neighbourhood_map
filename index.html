@@ -68,7 +68,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#" id="show-hotel-markers">Show hotel markers</a></li>
+                <li><a href="#" id="show-markers">Show hotel markers</a></li>
               </ul>
             </li>
           </ul>
@@ -104,9 +104,9 @@
         {title: 'Two Oceans Aquarium', coordinates: {lat: -33.9080317, lng: 18.4176607}},
         {title: 'Victoria & Alfred Waterfront', coordinates: {lat: -33.90363, lng: 18.420529}},
         {title: 'Boulders Beach', coordinates: {lat: -34.192783, lng: 18.4327457}},
-        {title: 'Robben Island', coordinates: {lat: -33.804744, lng: 18.3523277}},
+        {title: 'Robben Island', coordinates: {lat: -33.8076073, lng: 18.3712309}},
         {title: 'World of Birds Wildlife Sanctuary and Monkey Park', coordinates: {lat: -34.016799, lng: 18.36196}},
-        {title: 'Camps Bay Beach', coordinates: {lat: -33.9506695, lng: 18.3745891}},
+        {title: 'Camps Bay Beach', coordinates: {lat: -33.9506605, lng: 18.3776413}},
         {title: 'The Cape Wheel', coordinates: {lat: -33.9053211, lng: 18.4199256}}
       ];
 
@@ -175,7 +175,7 @@
         });
 
         showMarkers();
-        document.getElementById('show-hotel-markers').addEventListener('click', showMarkers);
+        document.getElementById('show-markers').addEventListener('click', showMarkers);
 
         // Listen for the event fired when the user selects a prediction and clicks
         // "go" more details for that place.
@@ -233,7 +233,7 @@
       var showMarkers = function () {
         var tick = ' <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
         var normalText = 'Show hotel markers';
-        var elem = document.getElementById('show-hotel-markers');
+        var elem = document.getElementById('show-markers');
 
         if(elem.innerHTML.indexOf('glyphicon-ok') < 0){
           var bounds = new google.maps.LatLngBounds();
