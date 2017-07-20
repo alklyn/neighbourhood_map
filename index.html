@@ -115,6 +115,12 @@
         mapTypeControl: false
       });
 
+      // Create a searchbox in order to execute a places search
+      var searchBox = new google.maps.places.SearchBox(
+          document.getElementById('places-search'));
+      // Bias the searchbox to within the bounds of the map.
+      searchBox.setBounds(map.getBounds());
+
       // My shortlist of the budget hotels I would like to visit in Cape Town.
       var locations = [
         {title: 'Colors of Cape Town', coordinates: {lat: -33.8570612, lng: 18.5062766,}},
