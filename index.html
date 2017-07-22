@@ -86,8 +86,8 @@
     <div class="container-fluid map-container">
       <div class="row">
           <div class="col-md-3" id="hotels">
-            <ul class="list-group">
-              <li class="list-group-item">Cras justo odio</li>
+            <ul class="list-group" data-bind="foreach: locations">
+              <li class="list-group-item" data-bind="text: title"></li>
             </ul>
           </div>
           <div class="col-md-9">
