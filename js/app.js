@@ -11,7 +11,7 @@ var viewModel = function () {
   self.searchValue = ko.observable('');
 
   self.locations = ko.observableArray([]);
-  LOCATIONS.forEach(function (place) {
+  attractions.forEach(function (place) {
     self.locations.push(new Location(place));
   });
 
@@ -19,7 +19,7 @@ var viewModel = function () {
     // Build a list of locations to display in the page.
 
     self.locations([]);
-    LOCATIONS.forEach(function (place) {
+    attractions.forEach(function (place) {
       var addItem = true;
       if ((place.title.toLowerCase().indexOf(self.searchValue().toLowerCase()) > -1) || (self.searchValue().length === 0)) {
         self.locations.push(new Location(place));

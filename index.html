@@ -77,7 +77,6 @@
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search available locations" id="filter-locations" data-bind="textInput: searchValue">
             </div>
-            <button type="submit" class="btn btn-default" id="btn-places-search">Submit</button>
           </form>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -99,7 +98,7 @@
 
     <script>
       // Popolar attractions in Cape Town.
-      const LOCATIONS = [
+      var attractions = [
         {title: 'Table mountain', coordinates: {lat: -33.962822, lng: 18.4076519}},
         {title: 'Cape of Good Hope', coordinates: {lat: -34.3568425, lng: 18.4739882}},
         {title: 'Two Oceans Aquarium', coordinates: {lat: -33.9080317, lng: 18.4176607}},
@@ -108,8 +107,24 @@
         {title: 'Robben Island', coordinates: {lat: -33.8076073, lng: 18.3712309}},
         {title: 'World of Birds Wildlife Sanctuary and Monkey Park', coordinates: {lat: -34.016799, lng: 18.36196}},
         {title: 'Camps Bay Beach', coordinates: {lat: -33.9506605, lng: 18.3776413}},
+        {title: 'Constantia', coordinates: {lat: -34.0276319, lng: 18.396417}},
+        {title: 'Platteklip Gorge', coordinates: {lat: -33.9613302, lng: 18.4087109}},
         {title: 'The Cape Wheel', coordinates: {lat: -33.9053211, lng: 18.4199256}}
       ];
+
+      // Sort by title
+      attractions.sort(function(a, b) {
+        var titleA = a.title.toLowerCase(); // ignore upper and lowercase
+        var titleB = b.title.toLowerCase(); // ignore upper and lowercase
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+
+        return 0;
+      });
 
       var map;
 
@@ -144,7 +159,7 @@
         var highlightedIcon = makeMarkerIcon('0a0aBB');
 
         // The following group uses the location array to create an array of markers on initialize.
-        LOCATIONS.forEach (function (location, index) {
+        attractions.forEach (function (location, index) {
           // Create a marker per location, and put into markers array.
            var marker = new google.maps.Marker({
             position: location.coordinates,
