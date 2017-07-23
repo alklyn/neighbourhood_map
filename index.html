@@ -88,6 +88,9 @@
             <ul class="list-group" data-bind="foreach: locations">
               <li class="list-group-item" data-bind="text: title"></li>
             </ul>
+            <ul class="list-group" data-bind="ifnot: locations().length">
+              <li class="list-group-item"> No items found.</li>
+            </ul>
           </div>
           <div class="col-md-9">
             <div id="map">
