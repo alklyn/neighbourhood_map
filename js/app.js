@@ -19,10 +19,12 @@ var viewModel = function () {
     // Build a list of locations to display in the page.
 
     self.locations([]);
+    self.filteredLocations = [];
     attractions.forEach(function (place) {
       var addItem = true;
       if ((place.title.toLowerCase().indexOf(self.searchValue().toLowerCase()) > -1) || (self.searchValue().length === 0)) {
         self.locations.push(new Location(place));
+        self.filteredLocations.push(place);
       }
     });
   }

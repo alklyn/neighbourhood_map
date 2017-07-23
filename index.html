@@ -22,6 +22,11 @@
         background-color: grey;
       }
 
+      #pano {
+        width: 200px;
+        height: 200px;
+      }
+
     </style>
 
     <script src="js/lib/knockout-3.4.2/knockout.js"></script>
@@ -89,7 +94,7 @@
               <li class="list-group-item" data-bind="text: title"></li>
             </ul>
             <ul class="list-group" data-bind="ifnot: locations().length">
-              <li class="list-group-item"> No items found.</li>
+              <li class="list-group-item text-warning"> No items match that input.</li>
             </ul>
           </div>
           <div class="col-md-9">
@@ -111,11 +116,14 @@
         {title: 'World of Birds Wildlife Sanctuary and Monkey Park', coordinates: {lat: -34.016799, lng: 18.36196}},
         {title: 'Camps Bay Beach', coordinates: {lat: -33.9506605, lng: 18.3776413}},
         {title: 'Constantia', coordinates: {lat: -34.0276319, lng: 18.396417}},
+        {title: 'Hottentots Holland Nature Reserve', coordinates: {lat: -34.0334007, lng: 19.0632778}},
+        {title: 'GrandWest Casino and Entertainment World', coordinates: {lat: -33.9177148, lng: 18.547582}},
+        {title: 'Kirstenbosch National Botanical Garden', coordinates: {lat: -33.9875011, lng: 18.432722}},
         {title: 'Platteklip Gorge', coordinates: {lat: -33.9613302, lng: 18.4087109}},
         {title: 'The Cape Wheel', coordinates: {lat: -33.9053211, lng: 18.4199256}}
       ];
 
-      // Sort by title
+      // Sort by title. From mozilla example.
       attractions.sort(function(a, b) {
         var titleA = a.title.toLowerCase(); // ignore upper and lowercase
         var titleB = b.title.toLowerCase(); // ignore upper and lowercase
@@ -187,12 +195,7 @@
           });
         });
 
-        showMarkers();
-        document.getElementById('show-markers').addEventListener('click', showMarkers);
-
-        // Listen for the event fired when the user selects a prediction and clicks
-        // "go" more details for that place.
-        // document.getElementById('btn-places-search').addEventListener('click', filterLocations);
+        showMarkers(markers);
       };
 
       // This function populates the infowindow when the marker is clicked. We'll only allow
@@ -243,27 +246,14 @@
 
 
       // This function will loop through the markers array and display them all.
-      var showMarkers = function () {
-        var tick = ' <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
-        var normalText = 'Show hotel markers';
-        var elem = document.getElementById('show-markers');
-
-        if(elem.innerHTML.indexOf('glyphicon-ok') < 0){
-          var bounds = new google.maps.LatLngBounds();
-          // Extend the boundaries of the map for each marker and display the marker
-          markers.forEach (function (marker) {
-            marker.setMap(map);
-            bounds.extend(marker.position);
-          });
-          map.fitBounds(bounds);
-
-          // Append tick to set menu item
-          elem.innerHTML += tick;
-        }
-        else{
-          hideMarkers(markers);
-          this.innerHTML = normalText;
-        }
+      var showMarkers = function (markers) {
+        var bounds = new google.maps.LatLngBounds();
+        // Extend the boundaries of the map for each marker and display the marker
+        markers.forEach (function (marker) {
+          marker.setMap(map);
+          bounds.extend(marker.position);
+        });
+        map.fitBounds(bounds);
       }
 
       // This function will loop through the listings and hide them all.
@@ -285,10 +275,6 @@
           new google.maps.Point(10, 34),
           new google.maps.Size(21,34));
         return markerImage;
-      }
-
-      var filterLocations = function () {
-        // Filter the list of locations according to text search
       }
 
       ko.applyBindings(new viewModel());
