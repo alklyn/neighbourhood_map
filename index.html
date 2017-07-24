@@ -109,7 +109,9 @@
             <div class="panel panel-default">
               <div class="panel-heading">Relevant Wikipedia Links</div>
               <div class="panel-body">
-                <ul id="wikipedia-links">Type in an address above and find relevant Wikipedia articles here!</ul>
+                <ul class="list-group" data-bind="foreach: wikiData">
+                    <li class="list-group-item" data-bind="text: $data"> </li>
+                </ul>
               </div>
             </div>
 

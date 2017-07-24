@@ -1,27 +1,3 @@
-var getWikipediaData = function (placeName) {
-  // load wikipedia data
-  var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + placeName + '&format=json&callback=wikiCallback';
-  var wikiRequestTimeout = setTimeout(function(){
-      $wikiElem.text("failed to get wikipedia resources");
-  }, 8000);
-
-  $.ajax({
-      url: wikiUrl,
-      dataType: "jsonp",
-      jsonp: "callback",
-      success: function( response ) {
-          var articleList = response[1];
-
-          for (var i = 0; i < articleList.length; i++) {
-              articleStr = articleList[i];
-              var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-              $wikiElem.append('<li><a href="' + url + '">' + articleStr + '</a></li>');
-          };
-
-          clearTimeout(wikiRequestTimeout);
-      }
-  });
-}
 
 var Location = function (data) {
   var self = this;
@@ -34,6 +10,8 @@ var Location = function (data) {
 var viewModel = function () {
   var self = this;
   self.searchValue = ko.observable('');
+  self.wikiError = ko.observable(false);
+  self.wikiData = ko.observableArray([]);
 
   self.locations = ko.observableArray([]);
   attractions.forEach(function (place) {
@@ -54,12 +32,32 @@ var viewModel = function () {
     });
   }
 
-  self.getLocationData = function (name) {
-    console.log('Getting data about: ' + name);
+  self.getLocationData = function (place) {
+      console.log('Getting data about: ' + place.title);
+      getWikipediaData(place.title);
   }
 
   self.searchValue.subscribe(function () {
     self.updateLocationsList();
   });
   self.updateLocationsList();
+
+  self getWikipediaData = function (placeName) {
+    // load wikipedia data
+    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + placeName + '&format=json&callback=wikiCallback';
+    var wikiRequestTimeout = setTimeout(function(){
+        self.wikiError(true);
+    }, 8000);
+
+    $.ajax({
+        url: wikiUrl,
+        dataType: "jsonp",
+        jsonp: "callback",
+        success: function( response ) {
+            self.wikiData(response[1]);
+
+            clearTimeout(wikiRequestTimeout);
+        }
+    });
+  }
 }
