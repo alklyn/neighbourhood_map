@@ -32,17 +32,7 @@ var viewModel = function () {
     });
   }
 
-  self.getLocationData = function (place) {
-      console.log('Getting data about: ' + place.title);
-      getWikipediaData(place.title);
-  }
-
-  self.searchValue.subscribe(function () {
-    self.updateLocationsList();
-  });
-  self.updateLocationsList();
-
-  self getWikipediaData = function (placeName) {
+  self.getWikipediaData = function (placeName) {
     // load wikipedia data
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + placeName + '&format=json&callback=wikiCallback';
     var wikiRequestTimeout = setTimeout(function(){
@@ -60,4 +50,15 @@ var viewModel = function () {
         }
     });
   }
+
+  self.getLocationData = function (place) {
+      console.log('Getting data about: ' + place.title);
+      self.getWikipediaData(place.title);
+  }
+
+  self.searchValue.subscribe(function () {
+    self.updateLocationsList();
+  });
+  self.updateLocationsList();
+
 }
