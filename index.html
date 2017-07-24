@@ -4,6 +4,7 @@
     <title>Neighbourhood Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css" />
 
     <style>
@@ -12,7 +13,7 @@
     }
       .map-container {
         max-width: 100vw;
-        max-height: 80vh;
+        max-height: 90vh;
         overflow: hidden;
       }
 
@@ -25,6 +26,10 @@
       #pano {
         width: 200px;
         height: 200px;
+      }
+
+      .btn {
+        max-width: 100vw;
       }
 
     </style>
@@ -80,7 +85,7 @@
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search available locations" id="filter-locations" data-bind="textInput: searchValue">
+              <input type="text" class="form-control" placeholder="Filter available locations" id="filter-locations" data-bind="textInput: searchValue">
             </div>
           </form>
         </div><!-- /.navbar-collapse -->
@@ -89,15 +94,27 @@
 
     <div class="container-fluid map-container">
       <div class="row">
-          <div class="col-md-3" id="hotels">
-            <ul class="list-group" data-bind="foreach: locations">
+          <div class="col-md-4" id="hotels">
+            <!-- <ul class="list-group" data-bind="foreach: locations">
               <li class="list-group-item" data-bind="text: title"></li>
-            </ul>
-            <ul class="list-group" data-bind="ifnot: locations().length">
-              <li class="list-group-item text-warning"> No items match that input.</li>
-            </ul>
+            </ul> -->
+
+            <div class="btn-group-vertical" role="group" aria-label="..."  data-bind="foreach: locations">
+              <button type="button" class="btn btn-default" data-bind="text: title, click: $parent.getLocationData"></button>
+            </div>
+            <div class="btn-group-vertical" role="group" aria-label="..."  data-bind="ifnot: locations().length">
+              <button type="button" class="btn btn-warning">No items match that input.</button>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">Relevant Wikipedia Links</div>
+              <div class="panel-body">
+                <ul id="wikipedia-links">Type in an address above and find relevant Wikipedia articles here!</ul>
+              </div>
+            </div>
+
           </div>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div id="map">
             </div>
           </div>
