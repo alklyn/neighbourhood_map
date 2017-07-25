@@ -12,7 +12,7 @@ var viewModel = function () {
   self.searchValue = ko.observable('');
   self.wikiError = ko.observable(false);
   self.wikiData = ko.observableArray([]);
-  self.wikiDataNotFound = ko.observable(false);
+  self.wikiNoResultsFound = ko.observable(false);
   self.wikiSearchMade = ko.observable(false);
 
   self.locations = ko.observableArray([]);
@@ -50,10 +50,9 @@ var viewModel = function () {
         dataType: "jsonp",
         jsonp: "callback",
         success: function( response ) {
-          console.log('Num results: ' + response[1].length);
-          console.log('Search made: ' + self.wikiSearchMade());
+          // Check if wikipedia search returned any results
           if (self.wikiSearchMade()) {
-            self.wikiDataNotFound(response[1].length === 0);
+            self.wikiNoResultsFound(response[1].length === 0);
           }
 
           response[1].forEach(function (title) {

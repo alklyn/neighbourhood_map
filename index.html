@@ -71,7 +71,7 @@
 
     <div class="container-fluid map-container">
       <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="btn-group-vertical place-goup" role="group" aria-label="..."  data-bind="foreach: locations">
               <button type="button" class="btn btn-default btn-place" data-bind="text: title, click: $parent.getLocationData"></button>
             </div>
@@ -85,7 +85,7 @@
                 <ul class="list-group" data-bind="if: wikiError">
                     <li class="list-group-item">Failed to get wikipedia resources</a></li>
                 </ul>
-                <ul class="list-group" data-bind="if: wikiDataNotFound">
+                <ul class="list-group" data-bind="if: wikiNoResultsFound">
                     <li class="list-group-item">Search returned no results</a></li>
                 </ul>
                 <ul class="list-group" data-bind="foreach: wikiData">
@@ -95,7 +95,7 @@
             </div>
 
           </div>
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div id="map">
             </div>
           </div>
