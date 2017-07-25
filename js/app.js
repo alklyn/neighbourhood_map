@@ -81,7 +81,7 @@ var viewModel = function () {
 
   self.searchValue.subscribe(function () {
     self.updateLocationsList();
-    hideMarkers(markers, self.unwantedPlaces)
+    displayMarkers(markers, self.unwantedPlaces)
   });
   self.updateLocationsList();
 
@@ -129,7 +129,7 @@ var initMap = function () {
   });
 
   createMarkers(attractions)
-  showMarkers(markers);
+  displayMarkers(markers, []);
 };
 
 var createMarkers = function (placesArray) {
@@ -221,25 +221,14 @@ function populateInfoWindow(marker, infowindow) {
 }
 
 
-// This function will loop through the markers array and display them all.
-var showMarkers = function (markers) {
-  var bounds = new google.maps.LatLngBounds();
-  // Extend the boundaries of the map for each marker and display the marker
-  markers.forEach (function (marker) {
-    marker.setMap(map);
-    bounds.extend(marker.position);
-  });
-  map.fitBounds(bounds);
-}
-
-// This function will loop through the markers and hide those in the list of unwanted markers.
-var hideMarkers = function (markers, unwantedPlaces) {
+// This function will hide markers in the list of unwanted markers and display
+// those that are not
+var displayMarkers = function (markers, unwantedPlaces) {
   var bounds = new google.maps.LatLngBounds();
   markers.forEach(function (marker) {
     var isNotWanted = function (placeName) {
       return placeName === marker.title;
     }
-
     if (unwantedPlaces.find(isNotWanted)) {
       marker.setMap(null);
     }
