@@ -1,3 +1,8 @@
+var map;
+
+// Create a new blank array for all the listing markers.
+var markers = [];
+
 
 var Location = function (data) {
   var self = this;
@@ -14,6 +19,7 @@ var viewModel = function () {
   self.wikiData = ko.observableArray([]);
   self.wikiNoResultsFound = ko.observable(false);
   self.wikiSearchMade = ko.observable(false);
+  self.unwantedPlaces = [];
 
   self.locations = ko.observableArray([]);
   attractions.forEach(function (place) {
@@ -29,7 +35,10 @@ var viewModel = function () {
       var addItem = true;
       if ((place.title.toLowerCase().indexOf(self.searchValue().toLowerCase()) > -1) || (self.searchValue().length === 0)) {
         self.locations.push(new Location(place));
-        self.filteredLocations.push(place);
+      }
+      else{
+        // save a list of names of unwanted locations
+        self.unwantedPlaces.push(place.title);
       }
     });
   }
@@ -73,6 +82,7 @@ var viewModel = function () {
 
   self.searchValue.subscribe(function () {
     self.updateLocationsList();
+    hideMarkers(markers, self.unwantedPlaces)
   });
   self.updateLocationsList();
 
@@ -111,21 +121,6 @@ attractions.sort(function(a, b) {
   return 0;
 });
 
-var map;
-
-// This global polygon variable is to ensure only ONE polygon is rendered.
-var polygon = null;
-
-// Flag set if markers are made visible
-var visible = true;
-
-// Create a new blank array for all the listing markers.
-var markers = [];
-
-// Create placemarkers array to use in multiple functions to have control
-// over the number of places that show.
-var placeMarkers = [];
-
 var initMap = function () {
   // Constructor creates a new map - only center and zoom are required.
   map = new google.maps.Map(document.getElementById('map'), {
@@ -139,6 +134,10 @@ var initMap = function () {
 };
 
 var createMarkers = function (placesArray) {
+  // Reset markers array
+  markers = [];
+  console.log(placesArray);
+  console.log('Markers array length: '  + markers.length);
   var largeInfowindow = new google.maps.InfoWindow();
 
   // Style the markers a bit. This will be our listing marker icon.
@@ -234,11 +233,17 @@ var showMarkers = function (markers) {
   map.fitBounds(bounds);
 }
 
-// This function will loop through the listings and hide them all.
-var hideMarkers = function () {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
+// This function will loop through the markers and hide those in the list of unwanted markers.
+var hideMarkers = function (markers, unwantedPlaces) {
+  markers.forEach(function (marker) {
+    var isNotWanted = function (placeName) {
+      return placeName === marker.title;
+    }
+
+    if (unwantedPlaces.find(isNotWanted)) {
+      marker.setMap(null);
+    }
+  })
 }
 
 // This function takes in a COLOR, and then creates a new marker
