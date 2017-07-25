@@ -18,6 +18,6 @@ overflow-x: hidden;
   height: 200px;
 }
 
-.btn {
-  max-width: 100vw;
+.btn-place, .place-goup {
+  width: 100%;
 }
