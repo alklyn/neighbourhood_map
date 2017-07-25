@@ -6,7 +6,6 @@ var markers = [];
 
 var Location = function (data) {
   var self = this;
-
   self.title = data.title;
   self.coordinates = data.coordinates;
 };
@@ -30,7 +29,7 @@ var viewModel = function () {
     // Build a list of locations to display in the page.
 
     self.locations([]);
-    self.filteredLocations = [];
+    self.unwantedPlaces = [];
     attractions.forEach(function (place) {
       var addItem = true;
       if ((place.title.toLowerCase().indexOf(self.searchValue().toLowerCase()) > -1) || (self.searchValue().length === 0)) {
@@ -235,6 +234,7 @@ var showMarkers = function (markers) {
 
 // This function will loop through the markers and hide those in the list of unwanted markers.
 var hideMarkers = function (markers, unwantedPlaces) {
+  var bounds = new google.maps.LatLngBounds();
   markers.forEach(function (marker) {
     var isNotWanted = function (placeName) {
       return placeName === marker.title;
@@ -243,7 +243,12 @@ var hideMarkers = function (markers, unwantedPlaces) {
     if (unwantedPlaces.find(isNotWanted)) {
       marker.setMap(null);
     }
-  })
+    else {
+      marker.setMap(map);
+      bounds.extend(marker.position);
+    }
+  });
+  map.fitBounds(bounds);
 }
 
 // This function takes in a COLOR, and then creates a new marker
