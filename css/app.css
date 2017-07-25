@@ -1,0 +1,23 @@
+.flag {
+  max-width: 120px;
+}
+.map-container {
+  max-width: 100vw;
+  max-height: 90vh;
+overflow-x: hidden;
+}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+}
+
+#pano {
+  width: 200px;
+  height: 200px;
+}
+
+.btn {
+  max-width: 100vw;
+}

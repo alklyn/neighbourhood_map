@@ -12,6 +12,8 @@ var viewModel = function () {
   self.searchValue = ko.observable('');
   self.wikiError = ko.observable(false);
   self.wikiData = ko.observableArray([]);
+  self.wikiDataNotFound = ko.observable(false);
+  self.wikiSearchMade = ko.observable(false);
 
   self.locations = ko.observableArray([]);
   attractions.forEach(function (place) {
@@ -48,18 +50,25 @@ var viewModel = function () {
         dataType: "jsonp",
         jsonp: "callback",
         success: function( response ) {
-            response[1].forEach(function (title) {
-              var url = 'https://en.wikipedia.org/wiki/' + title;
-              self.wikiData.push({title: title, url: url});
-            });
+          console.log('Num results: ' + response[1].length);
+          console.log('Search made: ' + self.wikiSearchMade());
+          if (self.wikiSearchMade()) {
+            self.wikiDataNotFound(response[1].length === 0);
+          }
 
-            clearTimeout(wikiRequestTimeout);
+          response[1].forEach(function (title) {
+            var url = 'https://en.wikipedia.org/wiki/' + title;
+            self.wikiData.push({title: title, url: url});
+          });
+
+          clearTimeout(wikiRequestTimeout);
         }
     });
   }
 
   self.getLocationData = function (place) {
       console.log('Getting data about: ' + place.title);
+      self.wikiSearchMade(true);
       self.getWikipediaData(place.title);
   }
 

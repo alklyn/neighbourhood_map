@@ -8,29 +8,6 @@
     <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css" />
 
     <style>
-    .flag {
-      max-width: 120px;
-    }
-      .map-container {
-        max-width: 100vw;
-        max-height: 90vh;
-        overflow-x: hidden;
-      }
-
-      #map {
-        width: 100vw;
-        height: 100vh;
-        background-color: grey;
-      }
-
-      #pano {
-        width: 200px;
-        height: 200px;
-      }
-
-      .btn {
-        max-width: 100vw;
-      }
 
     </style>
 
@@ -94,11 +71,7 @@
 
     <div class="container-fluid map-container">
       <div class="row">
-          <div class="col-md-4" id="hotels">
-            <!-- <ul class="list-group" data-bind="foreach: locations">
-              <li class="list-group-item" data-bind="text: title"></li>
-            </ul> -->
-
+          <div class="col-md-4">
             <div class="btn-group-vertical" role="group" aria-label="..."  data-bind="foreach: locations">
               <button type="button" class="btn btn-default" data-bind="text: title, click: $parent.getLocationData"></button>
             </div>
@@ -112,11 +85,11 @@
                 <ul class="list-group" data-bind="if: wikiError">
                     <li class="list-group-item">Failed to get wikipedia resources</a></li>
                 </ul>
-                <ul class="list-group" data-bind="ifnot: wikiData().length">
+                <ul class="list-group" data-bind="if: wikiDataNotFound">
                     <li class="list-group-item">Search returned no results</a></li>
                 </ul>
                 <ul class="list-group" data-bind="foreach: wikiData">
-                    <li class="list-group-item"><a target="_blank" data-bind="text: title, attr: {href: url}"></a></li>
+                    <li class="list-group-item"><a target="_blank" rel="noopener noreferrer" data-bind="text: title, attr: {href: url}"></a></li>
                 </ul>
               </div>
             </div>
@@ -135,7 +108,7 @@
         {title: 'Table mountain', coordinates: {lat: -33.962822, lng: 18.4076519}, state: 'Western Cape', country: 'South Africa'},
         {title: 'Cape of Good Hope', coordinates: {lat: -34.3568425, lng: 18.4739882}, state: 'Western Cape', country: 'South Africa'},
         {title: 'Two Oceans Aquarium', coordinates: {lat: -33.9080317, lng: 18.4176607}, state: 'Western Cape', country: 'South Africa'},
-        {title: 'Victoria & Alfred Waterfront', coordinates: {lat: -33.90363, lng: 18.420529}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Victoria and Alfred Waterfront', coordinates: {lat: -33.90363, lng: 18.420529}, state: 'Western Cape', country: 'South Africa'},
         {title: 'Boulders Beach', coordinates: {lat: -34.192783, lng: 18.4327457}, state: 'Western Cape', country: 'South Africa'},
         {title: 'Robben Island', coordinates: {lat: -33.8076073, lng: 18.3712309}, state: 'Western Cape', country: 'South Africa'},
         {title: 'World of Birds Wildlife Sanctuary and Monkey Park', coordinates: {lat: -34.016799, lng: 18.36196}, state: 'Western Cape', country: 'South Africa'},
