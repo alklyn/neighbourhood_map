@@ -110,7 +110,7 @@
               <div class="panel-heading">Relevant Wikipedia Links</div>
               <div class="panel-body">
                 <ul class="list-group" data-bind="foreach: wikiData">
-                    <li class="list-group-item" data-bind="text: $data"> </li>
+                    <li class="list-group-item"><a data-bind="text: title, attr: {href: url}"></a></li>
                 </ul>
               </div>
             </div>
@@ -126,20 +126,20 @@
     <script>
       // Popolar attractions in Cape Town.
       var attractions = [
-        {title: 'Table mountain', coordinates: {lat: -33.962822, lng: 18.4076519}},
-        {title: 'Cape of Good Hope', coordinates: {lat: -34.3568425, lng: 18.4739882}},
-        {title: 'Two Oceans Aquarium', coordinates: {lat: -33.9080317, lng: 18.4176607}},
-        {title: 'Victoria & Alfred Waterfront', coordinates: {lat: -33.90363, lng: 18.420529}},
-        {title: 'Boulders Beach', coordinates: {lat: -34.192783, lng: 18.4327457}},
-        {title: 'Robben Island', coordinates: {lat: -33.8076073, lng: 18.3712309}},
-        {title: 'World of Birds Wildlife Sanctuary and Monkey Park', coordinates: {lat: -34.016799, lng: 18.36196}},
-        {title: 'Camps Bay Beach', coordinates: {lat: -33.9506605, lng: 18.3776413}},
-        {title: 'Constantia', coordinates: {lat: -34.0276319, lng: 18.396417}},
-        {title: 'Hottentots Holland Nature Reserve', coordinates: {lat: -34.0334007, lng: 19.0632778}},
-        {title: 'GrandWest Casino and Entertainment World', coordinates: {lat: -33.9177148, lng: 18.547582}},
-        {title: 'Kirstenbosch National Botanical Garden', coordinates: {lat: -33.9875011, lng: 18.432722}},
-        {title: 'Platteklip Gorge', coordinates: {lat: -33.9613302, lng: 18.4087109}},
-        {title: 'The Cape Wheel', coordinates: {lat: -33.9053211, lng: 18.4199256}}
+        {title: 'Table mountain', coordinates: {lat: -33.962822, lng: 18.4076519}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Cape of Good Hope', coordinates: {lat: -34.3568425, lng: 18.4739882}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Two Oceans Aquarium', coordinates: {lat: -33.9080317, lng: 18.4176607}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Victoria & Alfred Waterfront', coordinates: {lat: -33.90363, lng: 18.420529}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Boulders Beach', coordinates: {lat: -34.192783, lng: 18.4327457}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Robben Island', coordinates: {lat: -33.8076073, lng: 18.3712309}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'World of Birds Wildlife Sanctuary and Monkey Park', coordinates: {lat: -34.016799, lng: 18.36196}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Camps Bay Beach', coordinates: {lat: -33.9506605, lng: 18.3776413}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Constantia', coordinates: {lat: -34.0276319, lng: 18.396417}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Hottentots Holland Nature Reserve', coordinates: {lat: -34.0334007, lng: 19.0632778}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'GrandWest Casino and Entertainment World', coordinates: {lat: -33.9177148, lng: 18.547582}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Kirstenbosch National Botanical Garden', coordinates: {lat: -33.9875011, lng: 18.432722}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'Platteklip Gorge', coordinates: {lat: -33.9613302, lng: 18.4087109}, state: 'Western Cape', country: 'South Africa'},
+        {title: 'The Cape Wheel', coordinates: {lat: -33.9053211, lng: 18.4199256}, state: 'Western Cape', country: 'South Africa'}
       ];
 
       // Sort by title. From mozilla example.

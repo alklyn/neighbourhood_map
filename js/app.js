@@ -32,7 +32,10 @@ var viewModel = function () {
     });
   }
 
-  self.getWikipediaData = function (placeName) {
+  self.getWikipediaData = function (place, state, country) {
+    // Reset array before loading new data
+      self.wikiData([]);
+
     // load wikipedia data
     var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + placeName + '&format=json&callback=wikiCallback';
     var wikiRequestTimeout = setTimeout(function(){
@@ -44,7 +47,10 @@ var viewModel = function () {
         dataType: "jsonp",
         jsonp: "callback",
         success: function( response ) {
-            self.wikiData(response[1]);
+            response[1].forEach(function (title) {
+              var url = 'https://en.wikipedia.org/wiki/' + title;
+              self.wikiData.push({title: title, url: url});
+            });
 
             clearTimeout(wikiRequestTimeout);
         }
@@ -53,7 +59,7 @@ var viewModel = function () {
 
   self.getLocationData = function (place) {
       console.log('Getting data about: ' + place.title);
-      self.getWikipediaData(place.title);
+      self.getWikipediaData(place.title, place.state, place.country);
   }
 
   self.searchValue.subscribe(function () {
