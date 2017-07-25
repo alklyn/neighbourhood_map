@@ -134,6 +134,11 @@ var initMap = function () {
     mapTypeControl: false
   });
 
+  createMarkers(attractions)
+  showMarkers(markers);
+};
+
+var createMarkers = function (placesArray) {
   var largeInfowindow = new google.maps.InfoWindow();
 
   // Style the markers a bit. This will be our listing marker icon.
@@ -143,36 +148,33 @@ var initMap = function () {
   // mouses over the marker.
   var highlightedIcon = makeMarkerIcon('0a0aBB');
 
-  var createMarkers = function (placesArray) {
-    // The following group uses the location array to create an array of markers on initialize.
-    placesArray.forEach (function (location, index) {
-      // Create a marker per location, and put into markers array.
-       var marker = new google.maps.Marker({
-        position: location.coordinates,
-        title: location.title,
-        animation: google.maps.Animation.DROP,
-        id: index
-      });
-
-      // Push the marker to our array of markers.
-      markers.push(marker);
-      // Create an onclick event to open an infowindow at each marker.
-      marker.addListener('click', function() {
-        populateInfoWindow(this, largeInfowindow);
-      });
-      // Two event listeners - one for mouseover, one for mouseout,
-      // to change the colors back and forth.
-      marker.addListener('mouseover', function() {
-        this.setIcon(highlightedIcon);
-      });
-      marker.addListener('mouseout', function() {
-        this.setIcon(defaultIcon);
-      });
+  // The following group uses the location array to create an array of markers on initialize.
+  placesArray.forEach (function (location, index) {
+    // Create a marker per location, and put into markers array.
+     var marker = new google.maps.Marker({
+      position: location.coordinates,
+      title: location.title,
+      animation: google.maps.Animation.DROP,
+      id: index
     });
-  };
-  createMarkers(attractions)
-  showMarkers(markers);
+
+    // Push the marker to our array of markers.
+    markers.push(marker);
+    // Create an onclick event to open an infowindow at each marker.
+    marker.addListener('click', function() {
+      populateInfoWindow(this, largeInfowindow);
+    });
+    // Two event listeners - one for mouseover, one for mouseout,
+    // to change the colors back and forth.
+    marker.addListener('mouseover', function() {
+      this.setIcon(highlightedIcon);
+    });
+    marker.addListener('mouseout', function() {
+      this.setIcon(defaultIcon);
+    });
+  });
 };
+
 
 // This function populates the infowindow when the marker is clicked. We'll only allow
 // one infowindow which will open at the marker that is clicked, and populate based
