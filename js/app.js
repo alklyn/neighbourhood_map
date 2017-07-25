@@ -73,8 +73,9 @@ var viewModel = function () {
     });
   }
 
+
   self.getLocationData = function (place) {
-      console.log('Getting data about: ' + place.title);
+    // Search for info about the place
       self.wikiSearchMade(true);
       self.getWikipediaData(place.title);
   }
@@ -84,7 +85,6 @@ var viewModel = function () {
     displayMarkers(markers, self.unwantedPlaces)
   });
   self.updateLocationsList();
-
 }
 
 // Popolar attractions in Cape Town.
@@ -134,9 +134,7 @@ var initMap = function () {
 
 var createMarkers = function (placesArray) {
   // Reset markers array
-  markers = [];
-  console.log(placesArray);
-  console.log('Markers array length: '  + markers.length);
+
   var largeInfowindow = new google.maps.InfoWindow();
 
   // Style the markers a bit. This will be our listing marker icon.
