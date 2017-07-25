@@ -109,6 +109,12 @@
             <div class="panel panel-default">
               <div class="panel-heading">Relevant Wikipedia Links</div>
               <div class="panel-body">
+                <ul class="list-group" data-bind="if: wikiError">
+                    <li class="list-group-item">Failed to get wikipedia resources</a></li>
+                </ul>
+                <ul class="list-group" data-bind="ifnot: wikiData().length">
+                    <li class="list-group-item">Search returned no results</a></li>
+                </ul>
                 <ul class="list-group" data-bind="foreach: wikiData">
                     <li class="list-group-item"><a data-bind="text: title, attr: {href: url}"></a></li>
                 </ul>
