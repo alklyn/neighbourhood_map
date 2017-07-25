@@ -14,7 +14,7 @@
       .map-container {
         max-width: 100vw;
         max-height: 90vh;
-        overflow: hidden;
+        overflow-x: hidden;
       }
 
       #map {
@@ -116,7 +116,7 @@
                     <li class="list-group-item">Search returned no results</a></li>
                 </ul>
                 <ul class="list-group" data-bind="foreach: wikiData">
-                    <li class="list-group-item"><a data-bind="text: title, attr: {href: url}"></a></li>
+                    <li class="list-group-item"><a target="_blank" data-bind="text: title, attr: {href: url}"></a></li>
                 </ul>
               </div>
             </div>
