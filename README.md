@@ -5,16 +5,16 @@ Cape Town South Africa.
 
 ## Getting Started
 Simply clone the project repo into you machine
-``` git clone https://github.com/alklyn/neighbourhood_map.git
-```
+` git clone https://github.com/alklyn/neighbourhood_map.git
+`
 ### Prerequisites
 1. A modern web browser.
 2. Git.
 
 ### Installing
 1. Get a google maps API key and replace "YOUR_API_KEY" with your key.
-``` https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=YOUR_API_KEY&v=3&callback=initMap
-```
+` https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=YOUR_API_KEY&v=3&callback=initMap
+`
 And you are ready to run the app.
 
 
