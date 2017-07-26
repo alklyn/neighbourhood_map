@@ -82,15 +82,15 @@ var viewModel = function () {
 
         // load wikipedia data
         var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + place + "&format=json&callback=wikiCallback";
-        var wikiRequestTimeout = setTimeout(function(){
-            $wikiElem.text("failed to get wikipedia resources");
+        var wikiRequestTimeout = setTimeout(function () {
+            self.wikiError(true);
         }, 8000);
 
         $.ajax({
             url: wikiUrl,
             dataType: "jsonp",
             jsonp: "callback",
-            success: function ( response ) {
+            success: function (response) {
                 // Check if wikipedia search returned any results
                 if (self.wikiSearchMade()) {
                     self.wikiNoResultsFound(response[1].length === 0);
@@ -104,34 +104,33 @@ var viewModel = function () {
                 clearTimeout(wikiRequestTimeout);
             }
         });
-    }
-
+    };
 
     self.getLocationData = function (place) {
-    // Search for info about the place
-    self.wikiSearchMade(true);
-    self.getWikipediaData(place.title);
-    animateMarker(place.title);
-    }
+        // Search for info about the place
+        self.wikiSearchMade(true);
+        self.getWikipediaData(place.title);
+        animateMarker(place.title);
+    };
 
     self.searchValue.subscribe(function () {
-    self.updateLocationsList();
-    displayMarkers(markers, self.unwantedPlaces)
+        self.updateLocationsList();
+        displayMarkers(markers, self.unwantedPlaces);
     });
     self.updateLocationsList();
 }
 
 
 var initMap = function () {
-// Constructor creates a new map - only center and zoom are required.
-map = new google.maps.Map(document.getElementById("map"), {
-center: {lat: -33.9466716, lng: 18.7745458},
-zoom: 18,
-mapTypeControl: false
-});
+    // Constructor creates a new map - only center and zoom are required.
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: {lat: -33.9466716, lng: 18.7745458},
+        zoom: 18,
+        mapTypeControl: false
+    });
 
-createMarkers(attractions)
-displayMarkers(markers, []);
+    createMarkers(attractions)
+    displayMarkers(markers, []);
 };
 
 var createMarkers = function (placesArray) {
