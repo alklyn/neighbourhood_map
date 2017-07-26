@@ -78,6 +78,7 @@ var viewModel = function () {
     // Search for info about the place
       self.wikiSearchMade(true);
       self.getWikipediaData(place.title);
+      wiggleMarker(place.title);
   }
 
   self.searchValue.subscribe(function () {
@@ -250,4 +251,26 @@ function makeMarkerIcon(markerColor) {
     new google.maps.Point(10, 34),
     new google.maps.Size(21,34));
   return markerImage;
+}
+
+var toggleBounce = function(marker) {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+
+var wiggleMarker = function (name) {
+  // Make selected marker bounce
+  markers.forEach(function (marker) {
+    if (marker.title === name) {
+      // make sure only one marker is bouncing at a time.
+      toggleBounce(marker);
+    }
+    else {
+      marker.setAnimation(null);
+    }
+  });
 }
