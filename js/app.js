@@ -1,5 +1,4 @@
 // Popolar attractions in Cape Town.
-"use strict";
 var attractions = [
     {title: "Table mountain", state: "Western Cape", country: "South Africa", coordinates: {lat: -33.962822, lng: 18.4076519}},
     {title: "Cape of Good Hope", state: "Western Cape", country: "South Africa", coordinates: {lat: -34.3568425, lng: 18.4739882}},
@@ -20,6 +19,7 @@ var attractions = [
 
 // Sort by title. From mozilla example.
 attractions.sort(function (a, b) {
+    "use strict";
     var titleA = a.title.toLowerCase(); // ignore upper and lowercase
     var titleB = b.title.toLowerCase(); // ignore upper and lowercase
     if (titleA < titleB) {
@@ -34,6 +34,7 @@ attractions.sort(function (a, b) {
 
 
 var Location = function (data) {
+    "use strict";
     var self = this;
     self.title = data.title;
     self.coordinates = data.coordinates;
@@ -41,6 +42,7 @@ var Location = function (data) {
 
 
 var viewModel = function () {
+    "use strict";
     var self = this;
     self.searchValue = ko.observable("");
     self.wikiError = ko.observable(false);
@@ -80,6 +82,7 @@ var viewModel = function () {
             self.wikiError(true);
         }, 8000);
 
+        // Ajax request to wikipedia
         $.ajax({
             url: wikiUrl,
             dataType: "jsonp",
