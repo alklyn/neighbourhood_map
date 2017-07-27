@@ -56,9 +56,8 @@ var viewModel = function () {
         self.locations.push(new Location(place));
     });
 
+    // Build a list of locations to display in the page.
     self.updateLocationsList = function () {
-        // Build a list of locations to display in the page.
-
         self.locations([]);
         self.unwantedPlaces = [];
         attractions.forEach(function (place) {
@@ -71,6 +70,7 @@ var viewModel = function () {
         });
     };
 
+    // Search for wikipedia articles about the place.
     self.getWikipediaData = function (place) {
         // Reset array before loading new data
         self.wikiData([]);
@@ -103,8 +103,8 @@ var viewModel = function () {
         });
     };
 
+    // Get information about a place
     self.getLocationData = function (place) {
-        // Search for info about the place
         self.wikiSearchMade(true);
         self.getWikipediaData(place.title);
         animateMarker(place.title);
