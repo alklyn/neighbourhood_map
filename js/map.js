@@ -5,6 +5,7 @@ var markers = [];
 
 
 var initMap = function () {
+    "use strict";
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById("map"), {
         center: {lat: -33.9466716, lng: 18.7745458},
@@ -17,6 +18,7 @@ var initMap = function () {
 };
 
 var createMarkers = function (placesArray) {
+    "use strict";
     // Reset markers array
     var largeInfowindow = new google.maps.InfoWindow();
 
@@ -61,6 +63,7 @@ var createMarkers = function (placesArray) {
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 var populateInfoWindow = function (marker, infowindow) {
+    "use strict";
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
         infowindow.marker = marker;
@@ -77,6 +80,7 @@ var populateInfoWindow = function (marker, infowindow) {
 // This function will hide markers in the list of unwanted markers and display
 // those that are not
 var displayMarkers = function (markers, unwantedPlaces) {
+    "use strict";
     var bounds = new google.maps.LatLngBounds();
     markers.forEach(function (marker) {
         var isNotWanted = function (placeName) {
@@ -92,13 +96,14 @@ var displayMarkers = function (markers, unwantedPlaces) {
     map.fitBounds(bounds);
 };
 
+
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
 // of 0, 0 and be anchored at 10, 34).
 var makeMarkerIcon = function (markerColor) {
+    "use strict";
     var markerImage = new google.maps.MarkerImage(
-        "http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|" + markerColor +
-        "|40|_|%E2%80%A2",
+        "http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|" + markerColor + "|40|_|%E2%80%A2",
         new google.maps.Size(21, 34),
         new google.maps.Point(0, 0),
         new google.maps.Point(10, 34),
@@ -109,6 +114,7 @@ var makeMarkerIcon = function (markerColor) {
 
 
 var toggleBounce = function (marker) {
+    "use strict";
     // Toggle bounce animation
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
@@ -119,6 +125,7 @@ var toggleBounce = function (marker) {
 
 
 var animateMarker = function (name) {
+    "use strict";
     // Make selected marker bounce
     markers.forEach(function (marker) {
         if (marker.title === name) {
@@ -131,43 +138,45 @@ var animateMarker = function (name) {
 };
 
 
-// This is the PLACE DETAILS search - it's the most detailed so it's only
+// This is the PLACE DETAILS search - it"s the most detailed so it"s only
 // executed when a marker is selected, indicating the user wants more
 // details about that place.
-var getPlacesDetails = function(marker, infowindow) {
+var getPlacesDetails = function (marker, infowindow) {
+    "use strict";
     console.log("Getting places details.");
     var content = "";
     var service = new google.maps.places.PlacesService(map);
     service.getDetails({
         placeId: marker.id
-    }, function(place, status) {
+    }, function (place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            // Set the marker property on this infowindow so it isn't created again.
-            content += '<div>';
+            // Set the marker property on this infowindow so it isn"t created again.
+            content += "<div>";
             if (place.name) {
-                content += '<strong>' + place.name + '</strong>';
+                content += "<strong>" + place.name + "</strong>";
             }
             if (place.formatted_address) {
-                content += '<br>' + place.formatted_address;
+                content += "<br>" + place.formatted_address;
             }
             if (place.formatted_phone_number) {
-                content += '<br>' + place.formatted_phone_number;
+                content += "<br>" + place.formatted_phone_number;
             }
             if (place.opening_hours) {
-                content += '<br><br><strong>Hours:</strong><br>' +
-                place.opening_hours.weekday_text[0] + '<br>' +
-                place.opening_hours.weekday_text[1] + '<br>' +
-                place.opening_hours.weekday_text[2] + '<br>' +
-                place.opening_hours.weekday_text[3] + '<br>' +
-                place.opening_hours.weekday_text[4] + '<br>' +
-                place.opening_hours.weekday_text[5] + '<br>' +
-                place.opening_hours.weekday_text[6];
+                content += "<br><br><strong>Hours:</strong><br>" +
+                        place.opening_hours.weekday_text[0] + "<br>" +
+                        place.opening_hours.weekday_text[1] + "<br>" +
+                        place.opening_hours.weekday_text[2] + "<br>" +
+                        place.opening_hours.weekday_text[3] + "<br>" +
+                        place.opening_hours.weekday_text[4] + "<br>" +
+                        place.opening_hours.weekday_text[5] + "<br>" +
+                        place.opening_hours.weekday_text[6];
             }
             if (place.photos) {
-                content += '<br><br><img src="' + place.photos[0].getUrl(
-                    {maxHeight: 150, maxWidth: 300}) + '">';
+                content += "<br><br><img src=\"" + place.photos[0].getUrl(
+                    {maxHeight: 200, maxWidth: 400}
+                ) + "\">";
             }
-            content += '</div>';
+            content += "</div>";
         } else {
             content += "<div>Failed to get place details</div>";
         }
@@ -178,11 +187,12 @@ var getPlacesDetails = function(marker, infowindow) {
 
 // Get content for the infowindow
 var addContent = function functionName(marker, infowindow) {
+    "use strict";
     var placesService = new google.maps.places.PlacesService(map);
     placesService.textSearch({
         query: marker.title,
         bounds: map.getBounds()
-    }, function(results, status) {
+    }, function (results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             marker.id = results[0].place_id;
             getPlacesDetails(marker, infowindow);
