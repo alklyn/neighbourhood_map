@@ -83,7 +83,7 @@ var viewModel = function () {
     };
 
     // Search for wikipedia articles about the place.
-    self.getWikipediaData = function (param1, param2, param3) {
+    self.getWikipediaData = function (param1) {
         // Reset array before loading new data
         self.wikiData([]);
         self.wikiError(false);
@@ -116,7 +116,7 @@ var viewModel = function () {
 
     // Reformat Wikipedia response to make it easier to use
     // Wikipedia response is split into 3 main sections
-    // Title, sinppet & url
+    // Title, snippet & url
     self.formatWikiData = function (response) {
         var len = response[1].length;
         var data = [];
@@ -156,7 +156,7 @@ var viewModel = function () {
     self.getLocationData = function (place) {
         // console.log(place);
         self.wikiSearchMade(true);
-        self.getWikipediaData(place.title, place.state, place.country);
+        self.getWikipediaData(place.title);
         animateMarker(place.title);
     };
 
