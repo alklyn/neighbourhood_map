@@ -76,8 +76,16 @@
                 <ul class="list-group" data-bind="if: wikiNoResultsFound">
                     <li class="list-group-item">Search returned no results</a></li>
                 </ul>
-                <ul class="list-group" data-bind="foreach: wikiData">
-                    <li class="list-group-item"><a target="_blank" rel="noopener noreferrer" data-bind="text: title, attr: {href: url}"></a></li>
+                <ul class="list-group wiki-data" data-bind="foreach: wikiData">
+                    <li class="list-group-item">
+                        <div>
+                            <h3 data-bind="text: title"></h3>
+                        </div>
+                        <div data-bind="text: snippet"></div>
+                        <div>
+                            <a target="_blank" rel="noopener noreferrer" data-bind="text: title, attr: {href: url}"></a>
+                        </div>
+                    </li>
                 </ul>
               </div>
             </div>

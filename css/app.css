@@ -21,3 +21,9 @@ overflow-x: hidden;
 .btn-place, .place-goup {
   width: 100%;
 }
+
+.wiki-data {
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
