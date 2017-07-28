@@ -13,16 +13,6 @@
     background-color: grey;
 }
 
-#pano {
-    width: 200px;
-    height: 200px;
-}
-
-.btn-place {
-    max-width: 200px;
-    white-space: normal;
-}
-
 .wiki-data {
     max-height: 400px;
     overflow-y: scroll;
