@@ -23,7 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand btn btn-primary" role="button" data-toggle="collapse" href="#place-info-collapse" aria-expanded="false" aria-controls="place-info-collapse">
+                    <a class="navbar-brand" role="button" data-toggle="collapse" href="#place-info-collapse" aria-expanded="false" aria-controls="place-info-collapse">
                         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="30" viewBox="0 0 9 6">
                             <clipPath id="Z">
@@ -63,7 +63,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Popular destinations</div>
                         <div class="panel-body">
-                            <div class="btn-group-vertical place-group" role="group" aria-label="..."  data-bind="foreach: locations">
+                            <div class="btn-group-vertical place-group btn-group-sm" role="group" aria-label="..."  data-bind="foreach: locations">
                                 <button type="button" class="btn btn-default btn-place" data-bind="text: title, click: $parent.getLocationData"></button>
                             </div>
                             <div class="btn-group-vertical" role="group" aria-label="..."  data-bind="ifnot: locations().length">
