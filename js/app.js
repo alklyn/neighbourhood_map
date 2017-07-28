@@ -74,8 +74,12 @@ var viewModel = function () {
 
     // Format search terms. Replace spaces with plus signs
     self.formatQuery = function (query) {
-        query = query.replace(" ","+");
-        return query;
+        query = query.trim();
+        var result = "";
+        for(var i = 0; i < query.length; i++) {
+            result += query[i].replace(" ","+");
+        }
+        return result;
     };
 
     // Search for wikipedia articles about the place.
@@ -84,7 +88,7 @@ var viewModel = function () {
         self.wikiData([]);
         self.wikiError(false);
         var query = self.formatQuery(param1);
-        // console.log(query);
+        console.log(query);
 
         // load wikipedia data
         var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + query + "&format=json&callback=wikiCallback";
@@ -126,19 +130,19 @@ var viewModel = function () {
                     for (var i = 0; i < len; i++) {
                         data[i].title = section[i];
                     }
-                    console.log(section);
+                    // console.log(section);
                     break;
                 case 2:
                     for (var j = 0; j < len; j++) {
                         data[j].snippet = section[j];
                     }
-                    console.log(section);
+                    // console.log(section);
                 break;
                 case 3:
                     for (var k = 0; k < len; k++) {
                         data[k].url = section[k];
                     }
-                    console.log(section);
+                    // console.log(section);
                     break;
                 default:
                     //skip any thing else
