@@ -44,6 +44,7 @@ var createMarkers = function (placesArray) {
         // Create an onclick event to open an infowindow at each marker.
         marker.addListener("click", function () {
             populateInfoWindow(this, largeInfowindow);
+            animateMarker(this.title);
         });
 
         // Two event listeners - one for mouseover, one for mouseout,
@@ -113,9 +114,9 @@ var makeMarkerIcon = function (markerColor) {
 };
 
 
+// Toggle bounce animation
 var toggleBounce = function (marker) {
     "use strict";
-    // Toggle bounce animation
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
     } else {
@@ -124,11 +125,11 @@ var toggleBounce = function (marker) {
 };
 
 
-var animateMarker = function (name) {
+var animateMarker = function (markerTitle) {
     "use strict";
     // Make selected marker bounce
     markers.forEach(function (marker) {
-        if (marker.title === name) {
+        if (marker.title === markerTitle) {
             // make sure only one marker is bouncing at a time.
             toggleBounce(marker);
         } else {
