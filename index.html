@@ -63,7 +63,7 @@
                         <div class="panel-heading">Popular destinations</div>
                         <div class="panel-body">
                             <div class="list-group" data-bind="foreach: locations">
-                                <a href="#" class="list-group-item" data-bind="text: title, click: $parent.getLocationData"></a>
+                                <a href="#" class="list-group-item" data-bind="text: title, click: $parent.getLocationData, attr: {id: title}"></a>
                             </div>
                             <div>
                                 No items match that input.
