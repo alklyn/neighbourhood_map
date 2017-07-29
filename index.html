@@ -65,7 +65,7 @@
                             <div class="list-group" data-bind="foreach: locations">
                                 <a href="#" class="list-group-item" data-bind="text: title, click: $parent.getLocationData, attr: {id: title}"></a>
                             </div>
-                            <div>
+                            <div data-bind="ifnot: locations().length">
                                 No items match that input.
                             </div>
                         </div>
