@@ -24,7 +24,7 @@ var Location = function (data) {
 };
 
 
-var viewModel = function () {
+var ViewModel = function () {
     "use strict";
     var self = this;
     self.searchValue = ko.observable("");
