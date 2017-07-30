@@ -14,7 +14,7 @@ var initMap = function () {
     });
 
     createMarkers(attractions);
-    displayMarkers(markers, []);
+    showMarkers(markers);
 };
 
 var createMarkers = function (placesArray) {
@@ -80,6 +80,18 @@ var populateInfoWindow = function (marker, infowindow) {
 };
 
 
+// This function will render markers in the array markers.
+var showMarkers = function (markers) {
+    "use strict";
+    var bounds = new google.maps.LatLngBounds();
+    markers.forEach(function (marker) {
+        marker.setMap(map);
+        bounds.extend(marker.position);
+    });
+    map.fitBounds(bounds);
+};
+
+
 // This function will hide markers in the list of unwanted markers and display
 // those that are not
 var displayMarkers = function (markers, unwantedPlaces) {
@@ -90,9 +102,9 @@ var displayMarkers = function (markers, unwantedPlaces) {
             return placeName === marker.title;
         };
         if (unwantedPlaces.find(isNotWanted)) {
-            marker.setMap(null);
+            marker.setVisible(false);
         } else {
-            marker.setMap(map);
+            marker.setVisible(true);
             bounds.extend(marker.position);
         }
     });
