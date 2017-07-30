@@ -12,14 +12,14 @@ everything you need to run the application.
 
 ### Prerequisites
 1. A modern web browser.
-2. Git.
+2. [Git](https://git-scm.com/)
 
 ### Installing
 1. Get a google maps API key.
-2. Open the file "idex.html" in a text editor  and replace "YOUR_API_KEY" with your key
+2. Open the file "index.html" in a text editor  and replace "YOUR_API_KEY" with your key
 ` https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=YOUR_API_KEY&v=3&callback=initMap
 `
-3. Open the file "idex.html" in a browser.
+3. Open the file "index.html" in a browser.
 And you are ready to run the app.
 
 
