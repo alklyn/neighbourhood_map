@@ -133,6 +133,7 @@ var ViewModel = function () {
         return data;
     };
 
+
     // Get information about a place
     self.getLocationData = function (place) {
         // console.log(place);
@@ -141,9 +142,18 @@ var ViewModel = function () {
         animateMarker(place.title);
     };
 
+
     self.searchValue.subscribe(function () {
         self.updateLocationsList();
         displayMarkers(markers, self.unwantedPlaces);
     });
     self.updateLocationsList();
 };
+
+
+// Delay the initialization of ViewModel until the page has loaded.
+// Solves the error I was getting below
+// https://stackoverflow.com/questions/15090015/why-am-i-getting-a-cannot-read-property-nodetype-of-null-error-with-knockout
+$(document).ready(function() {
+    ko.applyBindings(new ViewModel());
+});
