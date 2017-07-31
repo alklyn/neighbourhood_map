@@ -43,10 +43,8 @@ var createMarkers = function (placesArray) {
         markers.push(marker);
         // Create an onclick event to open an infowindow at each marker.
         marker.addListener("click", function () {
-            var placeElem = document.getElementById(this.title);
             populateInfoWindow(this, largeInfowindow);
-            // animateMarker(this.title);
-            placeElem.click();
+            viewModel.getLocationData(this);
         });
 
         // Two event listeners - one for mouseover, one for mouseout,

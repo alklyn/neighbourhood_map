@@ -64,11 +64,11 @@ var ViewModel = function () {
     };
 
     // Search for wikipedia articles about the place.
-    self.getWikipediaData = function (param1) {
+    self.getWikipediaData = function (placeName) {
         // Reset array before loading new data
         self.wikiData([]);
         self.wikiError(false);
-        var query = self.formatQuery(param1);
+        var query = self.formatQuery(placeName);
         console.log(query);
 
         // load wikipedia data
@@ -151,9 +151,11 @@ var ViewModel = function () {
 };
 
 
+var viewModel = new ViewModel();
+
 // Delay the initialization of ViewModel until the page has loaded.
 // Solves the error I was getting below
 // https://stackoverflow.com/questions/15090015/why-am-i-getting-a-cannot-read-property-nodetype-of-null-error-with-knockout
 $(document).ready(function() {
-    ko.applyBindings(new ViewModel());
+    ko.applyBindings(viewModel);
 });
