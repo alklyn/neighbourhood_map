@@ -95,6 +95,9 @@ var showMarkers = function (markers) {
 var displayMarkers = function (markers, unwantedPlaces) {
     "use strict";
     var bounds = new google.maps.LatLngBounds();
+    // Get the number of markers to be displayed
+    var numVisible = markers.length - unwantedPlaces.length;
+
     markers.forEach(function (marker) {
         var isNotWanted = function (placeName) {
             return placeName === marker.title;
@@ -106,7 +109,16 @@ var displayMarkers = function (markers, unwantedPlaces) {
             bounds.extend(marker.position);
         }
     });
-    map.fitBounds(bounds);
+
+    // Limit the zoom when only one marker is left
+    // https://stackoverflow.com/questions/2437683/google-maps-api-v3-can-i-setzoom-after-fitbounds
+    if (numVisible > 1) {
+        map.fitBounds(bounds);
+    }
+    else {
+        map.setCenter(bounds.getCenter());
+        map.setZoom(16);
+    }
 };
 
 
