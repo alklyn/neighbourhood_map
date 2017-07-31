@@ -13,6 +13,7 @@ everything requred to run the application.
 ### Prerequisites
 1. A modern web browser.
 2. [Git](https://git-scm.com/)
+3. JQuery minimum version 2.x.x (Version 3.2.1) included in project.
 
 ### Installation
 1. (Get a google maps API key)[https://developers.google.com/maps/documentation/javascript/get-api-key]
