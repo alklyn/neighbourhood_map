@@ -73,27 +73,6 @@ var ViewModel = function () {
 
         // load wikipedia data
         var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + query + "&format=json&callback=wikiCallback";
-        // var wikiRequestTimeout = setTimeout(function () {
-        //     self.wikiError(true);
-        // }, 8000);
-        //
-        // // Ajax request to wikipedia
-        // $.ajax({
-        //     url: wikiUrl,
-        //     dataType: "jsonp",
-        //     jsonp: "callback",
-        //     success: function (response) {
-        //         // Check if wikipedia search returned any results
-        //         if (self.wikiSearchMade()) {
-        //             self.wikiNoResultsFound(response[1].length === 0);
-        //             // console.log(self.wikiNoResultsFound());
-        //         }
-        //
-        //         self.wikiData(self.formatWikiData(response));
-        //         clearTimeout(wikiRequestTimeout);
-        //     }
-        // });
-
         $.ajax({
             // ajax settings
             url: wikiUrl,
@@ -104,7 +83,6 @@ var ViewModel = function () {
             // Check if wikipedia search returned any results
             if (self.wikiSearchMade()) {
                 self.wikiNoResultsFound(response[1].length === 0);
-                // console.log(self.wikiNoResultsFound());
             }
             self.wikiData(self.formatWikiData(response));
         }).fail(function (jqXHR, textStatus) {
