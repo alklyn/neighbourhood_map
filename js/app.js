@@ -33,6 +33,7 @@ var ViewModel = function () {
     self.wikiNoResultsFound = ko.observable(false);
     self.wikiSearchMade = ko.observable(false);
     self.unwantedPlaces = [];
+    self.googleError = ko.observable(false);
 
     self.locations = ko.observableArray([]);
     attractions.forEach(function (place) {
@@ -143,6 +144,11 @@ var ViewModel = function () {
         self.updateLocationsList();
         displayMarkers(markers, self.unwantedPlaces);
     });
+
+    // Display error message if if there is an error loading map.
+    self.setGoogleError = function (status) {
+        self.googleError(status);
+    };
     self.updateLocationsList();
 };
 

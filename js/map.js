@@ -233,7 +233,5 @@ var addContent = function functionName(marker, infowindow) {
 // Handles errors
 var googleError = function () {
     console.log("Oh snap!");
-    var errorMsg = "<div class=\"alert alert-danger\" role=\"alert\">Error!. Failed to load Google maps!</div>";
-    var mapElem = document.getElementById("map");
-    mapElem.innerHTML = errorMsg;
+    viewModel.setGoogleError(true);
 };

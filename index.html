@@ -92,6 +92,9 @@
 
                 <aside class="col-md-9">
                     <div id="map">
+                        <!-- ko if: googleError -->
+                            <div class="alert alert-danger" role="alert">Error!. Failed to load Google maps!</div>
+                        <!-- /ko -->
                     </div>
                 </aside>
             </div>
