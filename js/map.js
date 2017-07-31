@@ -12,9 +12,13 @@ var initMap = function () {
         zoom: 18,
         mapTypeControl: false
     });
-
     createMarkers(attractions);
     showMarkers(markers);
+
+    // Resize map as window resizes
+    google.maps.event.addDomListener(window, 'resize', function() {
+        displayMarkers(markers, viewModel.unwantedPlaces);
+    });
 };
 
 var createMarkers = function (placesArray) {
