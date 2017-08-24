@@ -182,13 +182,13 @@ let getPlacesDetails = function (marker, infowindow) {
             // Set the marker property on this infowindow so it isn"t created again.
             content += "<div>";
             if (place.name) {
-                content += "<strong>" + place.name + "</strong>";
+                content += `<strong> ${place.name} </strong>`;
             }
             if (place.formatted_address) {
-                content += "<br>" + place.formatted_address;
+                content += `<br> ${place.formatted_address}`;
             }
             if (place.formatted_phone_number) {
-                content += "<br>" + place.formatted_phone_number;
+                content += `<br> ${place.formatted_phone_number}`;
             }
             if (place.opening_hours) {
                 content += `<br><br><strong>Hours:</strong><br>
@@ -201,9 +201,9 @@ let getPlacesDetails = function (marker, infowindow) {
                         ${place.opening_hours.weekday_text[6]}`;
             }
             if (place.photos) {
-                content += "<br><br><img src=\"" + place.photos[0].getUrl(
+                content += `<br><br><img src="${place.photos[0].getUrl(
                     {maxHeight: 200, maxWidth: 400}
-                ) + "\">";
+                )}" >`;
             }
             content += "</div>";
         } else {
