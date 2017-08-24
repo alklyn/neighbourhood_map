@@ -191,14 +191,14 @@ let getPlacesDetails = function (marker, infowindow) {
                 content += "<br>" + place.formatted_phone_number;
             }
             if (place.opening_hours) {
-                content += "<br><br><strong>Hours:</strong><br>" +
-                        place.opening_hours.weekday_text[0] + "<br>" +
-                        place.opening_hours.weekday_text[1] + "<br>" +
-                        place.opening_hours.weekday_text[2] + "<br>" +
-                        place.opening_hours.weekday_text[3] + "<br>" +
-                        place.opening_hours.weekday_text[4] + "<br>" +
-                        place.opening_hours.weekday_text[5] + "<br>" +
-                        place.opening_hours.weekday_text[6];
+                content += `<br><br><strong>Hours:</strong><br>
+                        ${place.opening_hours.weekday_text[0]}  <br>
+                        ${place.opening_hours.weekday_text[1]}  <br>
+                        ${place.opening_hours.weekday_text[2]}  <br>
+                        ${place.opening_hours.weekday_text[3]}  <br>
+                        ${place.opening_hours.weekday_text[4]}  <br>
+                        ${place.opening_hours.weekday_text[5]}  <br>
+                        ${place.opening_hours.weekday_text[6]}`;
             }
             if (place.photos) {
                 content += "<br><br><img src=\"" + place.photos[0].getUrl(
