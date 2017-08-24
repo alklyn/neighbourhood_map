@@ -1,5 +1,5 @@
 // Popolar attractions in Cape Town.
-var attractions = [
+let attractions = [
     {title: "Table mountain", state: "Cape Town", country: "South Africa", coordinates: {lat: -33.962822, lng: 18.4076519}},
     {title: "Cape of Good Hope", state: "Cape Town", country: "South Africa", coordinates: {lat: -34.3568425, lng: 18.4739882}},
     {title: "Two Oceans Aquarium", state: "Cape Town", country: "South Africa", coordinates: {lat: -33.9080317, lng: 18.4176607}},

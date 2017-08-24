@@ -1,8 +1,8 @@
 // Sort by title. From mozilla example.
 attractions.sort(function (a, b) {
     "use strict";
-    var titleA = a.title.toLowerCase(); // ignore upper and lowercase
-    var titleB = b.title.toLowerCase(); // ignore upper and lowercase
+    let titleA = a.title.toLowerCase(); // ignore upper and lowercase
+    let titleB = b.title.toLowerCase(); // ignore upper and lowercase
     if (titleA < titleB) {
         return -1;
     }
@@ -14,9 +14,9 @@ attractions.sort(function (a, b) {
 });
 
 
-var Location = function (data) {
+let Location = function (data) {
     "use strict";
-    var self = this;
+    let self = this;
     self.title = data.title;
     self.state = data.state;
     self.country = data.country;
@@ -24,9 +24,9 @@ var Location = function (data) {
 };
 
 
-var ViewModel = function () {
+let ViewModel = function () {
     "use strict";
-    var self = this;
+    let self = this;
     self.searchValue = ko.observable("");
     self.wikiError = ko.observable(false);
     self.wikiData = ko.observableArray([]);
@@ -57,8 +57,8 @@ var ViewModel = function () {
     // Format search terms. Replace spaces with plus signs
     self.formatQuery = function (query) {
         query = query.trim();
-        var result = "";
-        for(var i = 0; i < query.length; i++) {
+        let result = "";
+        for(let i = 0; i < query.length; i++) {
             result += query[i].replace(" ","+");
         }
         return result;
@@ -69,11 +69,11 @@ var ViewModel = function () {
         // Reset array before loading new data
         self.wikiData([]);
         self.wikiError(false);
-        var query = self.formatQuery(placeName);
+        let query = self.formatQuery(placeName);
         console.log(query);
 
         // load wikipedia data
-        var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + query + "&format=json&callback=wikiCallback";
+        let wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + query + "&format=json&callback=wikiCallback";
         $.ajax({
             // ajax settings
             url: wikiUrl,
@@ -96,28 +96,28 @@ var ViewModel = function () {
     // Wikipedia response is split into 3 main sections
     // Title, snippet & url
     self.formatWikiData = function (response) {
-        var len = response[1].length;
-        var data = [];
-        for (var m = 0; m < len; m++) {
+        let len = response[1].length;
+        let data = [];
+        for (let m = 0; m < len; m++) {
             data.push({});
         }
-        for(var index = 0; index < response.length; index++) {
-            var section = response[index];
+        for(let index = 0; index < response.length; index++) {
+            let section = response[index];
             switch (index) {
                 case 1:
-                    for (var i = 0; i < len; i++) {
+                    for (let i = 0; i < len; i++) {
                         data[i].title = section[i];
                     }
                     // console.log(section);
                     break;
                 case 2:
-                    for (var j = 0; j < len; j++) {
+                    for (let j = 0; j < len; j++) {
                         data[j].snippet = section[j];
                     }
                     // console.log(section);
                 break;
                 case 3:
-                    for (var k = 0; k < len; k++) {
+                    for (let k = 0; k < len; k++) {
                         data[k].url = section[k];
                     }
                     // console.log(section);
@@ -153,7 +153,7 @@ var ViewModel = function () {
 };
 
 
-var viewModel = new ViewModel();
+let viewModel = new ViewModel();
 
 // Delay the initialization of ViewModel until the page has loaded.
 // Solves the error I was getting below
