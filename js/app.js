@@ -73,7 +73,7 @@ let ViewModel = function () {
         console.log(query);
 
         // load wikipedia data
-        let wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + query + "&format=json&callback=wikiCallback";
+        let wikiUrl = `http://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json&callback=wikiCallback`;
         $.ajax({
             // ajax settings
             url: wikiUrl,
