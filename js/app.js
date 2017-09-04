@@ -91,8 +91,8 @@ class ViewModel {
         // Get information about a place
         self.getLocationData = (place) => {
             // console.log(place);
-            this.wikiSearchMade(true);
-            this.getWikipediaData(place.title);
+            self.wikiSearchMade(true);
+            self.getWikipediaData(place.title);
             animateMarker(place.title);
         };
 
@@ -159,6 +159,6 @@ const viewModel = new ViewModel();
 // Delay the initialization of ViewModel until the page has loaded.
 // Solves the error I was getting below
 // https://stackoverflow.com/questions/15090015/why-am-i-getting-a-cannot-read-property-nodetype-of-null-error-with-knockout
-$(document).ready(function() {
+$(document).ready(() => {
     ko.applyBindings(viewModel);
 });
