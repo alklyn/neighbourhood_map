@@ -1,10 +1,10 @@
 let map;
 
 // Create a new blank array for all the listing markers.
-let markers = [];
+const markers = [];
 
 
-var initMap = function () {
+var initMap = function() {
     "use strict";
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById("map"), {
@@ -21,7 +21,7 @@ var initMap = function () {
     });
 };
 
-let createMarkers = function (placesArray) {
+const createMarkers = (placesArray) => {
     "use strict";
     // Reset markers array
     let largeInfowindow = new google.maps.InfoWindow();
@@ -67,7 +67,7 @@ let createMarkers = function (placesArray) {
 // This function populates the infowindow when the marker is clicked. We"ll only allow
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
-let populateInfoWindow = function (marker, infowindow) {
+const populateInfoWindow = (marker, infowindow) => {
     "use strict";
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
@@ -83,7 +83,7 @@ let populateInfoWindow = function (marker, infowindow) {
 
 
 // This function will render markers in the array markers.
-let showMarkers = function (markers) {
+const showMarkers = (markers) => {
     "use strict";
     let bounds = new google.maps.LatLngBounds();
     markers.forEach(function (marker) {
@@ -96,7 +96,7 @@ let showMarkers = function (markers) {
 
 // This function will hide markers in the list of unwanted markers and display
 // those that are not
-let displayMarkers = function (markers, unwantedPlaces) {
+const displayMarkers = (markers, unwantedPlaces) => {
     "use strict";
     let bounds = new google.maps.LatLngBounds();
     // Get the number of markers to be displayed
@@ -129,7 +129,7 @@ let displayMarkers = function (markers, unwantedPlaces) {
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
 // of 0, 0 and be anchored at 10, 34).
-let makeMarkerIcon = function (markerColor) {
+const makeMarkerIcon = (markerColor) => {
     "use strict";
     let markerImage = new google.maps.MarkerImage(
         "http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|" + markerColor + "|40|_|%E2%80%A2",
@@ -143,7 +143,7 @@ let makeMarkerIcon = function (markerColor) {
 
 
 // Toggle bounce animation
-let toggleBounce = function (marker) {
+const toggleBounce = (marker) => {
     "use strict";
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
@@ -153,7 +153,7 @@ let toggleBounce = function (marker) {
 };
 
 
-let animateMarker = function (markerTitle) {
+const animateMarker = (markerTitle) => {
     "use strict";
     // Make selected marker bounce
     markers.forEach(function (marker) {
@@ -170,7 +170,7 @@ let animateMarker = function (markerTitle) {
 // This is the PLACE DETAILS search - it"s the most detailed so it"s only
 // executed when a marker is selected, indicating the user wants more
 // details about that place.
-let getPlacesDetails = function (marker, infowindow) {
+const getPlacesDetails = (marker, infowindow) => {
     "use strict";
     console.log("Getting places details.");
     let content = "";
@@ -215,7 +215,7 @@ let getPlacesDetails = function (marker, infowindow) {
 
 
 // Get content for the infowindow
-let addContent = function functionName(marker, infowindow) {
+const addContent =  (marker, infowindow) => {
     "use strict";
     let placesService = new google.maps.places.PlacesService(map);
     placesService.textSearch({
@@ -231,7 +231,7 @@ let addContent = function functionName(marker, infowindow) {
 
 
 // Handles errors
-let googleError = function () {
+const googleError = () => {
     console.log("Oh snap!");
     viewModel.setGoogleError(true);
 };
